@@ -36,7 +36,13 @@ def index():
 
 @app.route('/create')
 def create():
-    return render_template('players/create.html')
+    sql = "SELECT * FROM `crud_codo`.`players` ORDER BY `number`;"
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    cursor.execute(sql)
+    players = cursor.fetchall()
+    conn.commit()
+    return render_template('players/create.html', players=players)
 
 @app.route("/destroy/<int:id>")
 def destroy(id):
