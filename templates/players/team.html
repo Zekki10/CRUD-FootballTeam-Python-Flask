@@ -1,0 +1,88 @@
+{% include 'header.html' %}    
+    <img alt="title_logo" class="title_logo" src="static/media/title_logo.png">
+    <section class="team_description">
+
+    </section>
+    <section class="main_container">
+        <section class="team_table_container">
+            {% block mainContent %}
+            {% if players|length != 0 %}
+            <table class="table_container">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Posicion</th>
+                        <th>Num</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for player in players %} 
+                        <tr>
+                            <td> 
+                                <img 
+                                    class="img-thumbnail" 
+                                    width="50" 
+                                    src="uploads/{{player[4]}}" 
+                                    alt=""
+                                > 
+                            </td>  
+                            <td>{{player[1]}}</td>
+                            <td>{{player[2]}}</td>
+                            <td class="player_number{{player[3]}}">{{player[3]}}</td>
+                            <script src="{{ url_for('static', filename='playerNumbers.js')}}" ></script>
+                            <td><a href="/edit/{{player[0]}}"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                            <td><a href="/destroy/{{player[0]}}"><i class="fa-solid fa-trash-can"></i></a></td>
+                        </tr>
+                    {% endfor %} 
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="5">Alineacion: 4 - 4 - 2</th>
+                </tr>
+                <tr>
+                    <td> 
+                        <img 
+                            class="img-thumbnail" 
+                            width="50" 
+                            src="uploads/DT.jpg" 
+                            alt=""
+                        > 
+                    </td>  
+                    <td>Juan P. Nardone</td>
+                    <td>Director Tecnico</td>
+                    <td>-</td>
+                    <td><i class="fa-solid fa-pen-to-square"></i></td>
+                    <td><i class="fa-solid fa-trash-can"></i></td>
+                </tr>
+                </tfoot>
+            </table>
+            {% else %}
+            <p class="msj_error">You need at least 1 players</p>
+            {% endif %}
+            {% endblock mainContent %}
+        </section>
+        <aside class="field_container">
+            {% block content %}
+                {% if players|length >= 11 %}
+                <div class="team_container">
+                    <p class="one">{{players[0][1]}}</p>
+                    <p class="two">{{players[1][1]}}</p>
+                    <p class="three">{{players[2][1]}}</p>
+                    <p class="four">{{players[3][1]}}</p>
+                    <p class="five">{{players[4][1]}}</p>
+                    <p class="six">{{players[5][1]}}</p>
+                    <p class="seven">{{players[6][1]}}</p>
+                    <p class="eighth">{{players[7][1]}}</p>
+                    <p class="nine">{{players[8][1]}}</p>
+                    <p class="ten">{{players[9][1]}}</p>
+                    <p class="elevn">{{players[10][1]}}</p>
+                </div>
+                {% else %}
+                <p class="msj_error">You need at least 11 players in your Team</p>
+                {% endif %}
+            {% endblock content %}
+            <img class="soccer_field" alt="soccer_field" src="static/media/cancha.jpg" width="100%">
+        </aside>
+    </section>
+    <section class="mid_section"></section>
+{% include 'footer.html' %}

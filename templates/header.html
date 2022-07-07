@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css')}}">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="nav_container">
+        <ul class="nav_list">
+            <li class="nav_item">        
+                <img alt="logo" class="img_logo" src="static/media/logo.png">
+            </li>
+            <li class="nav_item"><a class="nav_link" href="/">Home</a></li>
+            <li class="nav_item"><a class="nav_link" href="team">Team Codo</a></li>
+            <li class="nav_item"><a class="nav_link" href="create">Add Player</a></li>
+        </ul>
+    </nav>

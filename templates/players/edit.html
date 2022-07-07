@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css')}}">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="nav_container">
+        <ul class="nav_list">
+            <li class="nav_item">        
+                <img alt="logo" class="img_logo" src="../static/media/logo.png">
+            </li>
+            <li class="nav_item"><a class="nav_link" href="/">Home</a></li>
+            <li class="nav_item"><a class="nav_link" href="../team">Team Codo</a></li>
+            <li class="nav_item"><a class="nav_link" href="../create">Add Player</a></li>
+        </ul>
+    </nav>
+    {% for player in players %}
+    <div class="info_player">
+        <p><strong>Nombre:</strong> {{ player[1] }}</p>
+        <p><strong>Position:</strong> {{ player[2] }}</p>
+        <p><strong>Number:</strong> {{ player[3] }}</p>
+        <p>
+            <br> 
+            <img 
+                width="100" 
+                src="{{url_for('uploads', nombreFoto=player[4])}}" 
+                alt=""
+            > 
+            <br>
+        </p>
+    </div>
+    <form class="form_container" method="post" action="/update" enctype="multipart/form-data">
+        <div hidden class="div_form">
+            <input type="hidden" value="{{ player[0] }}" name="txtID" id="txtID">
+        </div>
+        <div class="div_form">
+            <label>Name:</label>
+            <input value="{{ player[1] }}" type="text" name="txtNombre" id="txtNombre">
+        </div>
+        <br>
+        <div class="div_form">
+            <label>Position:</label>
+            <select value="{{ player[2] }}" name="txtPosition" id="txtPosition">
+                <option value="Arquero">Arquero</option>
+                <option value="Defensor">Defensor</option>
+                <option value="Mediocampo">Mediocampo</option>
+                <option value="Delantero">Delantero</option>
+            </select>
+        </div>
+        <br>
+        <div class="div_form">
+            <label>Number:</label>
+            <select value="{{ player[3] }}" role="combobox" name="txtNum" id="txtNum">
+                <script src="{{ url_for('static', filename='desplegable.js')}}"></script>
+            </select>
+        </div>
+        <br>
+        <div class="div_form">
+            <label>Picture:</label>
+            <input type="file" name="txtFoto" id="txtFoto">
+        </div>
+        <br>
+        <br>
+        <input type="submit" value="Add Player" class="button_add">
+    </form>  
+    {% endfor %}
+{% include 'footer.html' %}
