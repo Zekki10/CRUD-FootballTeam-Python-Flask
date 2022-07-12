@@ -2,6 +2,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     font-family: 'Noto Sans', sans-serif;
 }
 html {
@@ -32,6 +33,14 @@ a:link, a:visited, a:active {
 }
 .nav_link {
     text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size .3s
+}
+.nav_link:hover, .nav_link:focus {
+    background-size: 100% 1px;
 }
 .img_logo{
     max-height: 40px;
@@ -40,13 +49,15 @@ a:link, a:visited, a:active {
 /*HOME*/
 .home_container {
     display: flex;
-    padding: 10% 5%;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    height: 100vh;
+    padding: 10%;
 }
 .description_home {
-    width: 40%;
+    width: 50%;
     font-size: 1.2rem;
+    text-align: justify;
 }
 .img_home_container {
     display: flex;
@@ -55,14 +66,14 @@ a:link, a:visited, a:active {
     align-items: center;
 }
 .img_home {
-    width: 60%;
+    width: 50%;
 }
 /*Main App*/
 .title_logo {
     width: 80%;
     display: flex;
     margin: 0 auto;
-    padding: 10% 10% 0;
+    padding: 10% 5% 5%;
     max-width: 800px;
 }
 .main_container {
@@ -73,7 +84,7 @@ a:link, a:visited, a:active {
 .team_table_container {
     width: 100%;
     display: flex;
-    padding: 5%;
+    padding: 3%;
 }
 .table_container{
     width: 100%;
@@ -88,6 +99,14 @@ tr td, tr th {
     border: solid 1px #000;
     padding: 0 10px;
 }
+.td_center {
+    text-align: center;
+    justify-content: center;
+}
+.td_center img {
+    margin: 3px 0;
+    vertical-align: middle;
+}
 tbody tr:nth-child(odd) {
     background-color: #9999997b;
 }
@@ -96,7 +115,7 @@ tbody tr:nth-child(odd) {
     display: flex;
     justify-content: center;
     align-items: center;  
-    padding: 5%;  
+    padding: 3%;  
 }
 .soccer_field {
     z-index: -2;
@@ -111,7 +130,7 @@ tbody tr:nth-child(odd) {
     position: absolute;
     z-index: -1;
     transform: translateY(-40px);
-    /* font-size: 1.2vw; */
+    align-items: center;
     font-weight: bold;
 }
 .one {
@@ -222,13 +241,15 @@ datalist {
     align-items: center;
     padding-top: 10%;
 }
+.player_edit {
+    display: flex
+}
 @media (max-width:1050px) {
     .table_container {
         font-size: 1rem;
     }
     .main_container {
-        margin: 0 5%;
-        width: 90%;
+        width: 100%;
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -238,10 +259,15 @@ datalist {
         grid-auto-rows: minmax(200px, auto);
         transform: translateY(20px);
     }
+    .title_logo{
+        padding: 20% 5% 10%;
+    }
 }
 @media (max-width:576px) {
     .home_container{
         padding-top:20% ;
+        flex-direction: column-reverse;
+        justify-content: space-evenly;    
     }
     .team_container {
         grid-auto-rows: minmax(120px, auto);
@@ -250,7 +276,10 @@ datalist {
         font-size: .7rem;
     }
     .description_home {
-        width: 40%;
+        width: 80%;
         font-size: .8rem;
+    }
+    .team_table_container {
+        padding: 0;
     }
 }

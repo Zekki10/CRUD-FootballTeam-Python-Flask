@@ -23,6 +23,9 @@
     </nav>
     {% for player in players %}
     <div class="info_player">
+        {% for player_item in players_list %}
+        <input type="hidden" value="{{player_item[3]}}" class="player_number{{player_item[3]}} player_edit"></input>
+        {% endfor %}
         <p><strong>Nombre:</strong> {{ player[1] }}</p>
         <p><strong>Position:</strong> {{ player[2] }}</p>
         <p><strong>Number:</strong> {{ player[3] }}</p>
@@ -57,8 +60,9 @@
         <br>
         <div class="div_form">
             <label>Number:</label>
-            <select value="{{ player[3] }}" role="combobox" name="txtNum" id="txtNum">
+            <select role="combobox" name="txtNum" id="txtNum">
                 <script src="{{ url_for('static', filename='desplegable.js')}}"></script>
+                <option value="{{ player[3] }}">{{ player[3] }}</option>
             </select>
         </div>
         <br>

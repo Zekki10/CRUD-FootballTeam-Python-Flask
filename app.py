@@ -7,6 +7,7 @@ import os #operating sistem
 
 # instanciando un objeto de tipo Flask
 app = Flask(__name__)
+# app.config['SECRET_KEY'] = '7110c8ae51a4b5af97be6534caef90e4bb9bdcb3380af008f90b23a5d1616bf319bc298105da20fe'
 mysql = MySQL()
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 app.config['MYSQL_DATABASE_USER'] = 'root'
@@ -63,7 +64,12 @@ def edit(id):
     cursor.execute("SELECT * FROM `crud_codo`.`players` WHERE id=%s", (id)) 
     players = cursor.fetchall()
     conn.commit() 
-    return render_template('players/edit.html', players=players)
+    sql = "SELECT * FROM `crud_codo`.`players` ORDER BY `number`;"
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    cursor.execute(sql)
+    players_list = cursor.fetchall()
+    return render_template('players/edit.html', players=players, players_list=players_list)
 
 @app.route('/update', methods=['POST']) 
 def update(): 
