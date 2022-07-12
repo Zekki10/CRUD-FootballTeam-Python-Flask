@@ -55,7 +55,7 @@
                 </tfoot>
             </table>
             {% else %}
-            <p class="msj_error">You need at least 1 players</p>
+            <p class="msj_error_team">You need at least 1 players</p>
             {% endif %}
             {% endblock mainContent %}
         </section>
@@ -76,7 +76,7 @@
                     <p class="elevn">{{players[10][1]}}</p>
                 </div>
                 {% else %}
-                <p class="msj_error">You need at least 11 players in your Team</p>
+                <p class="msj_error_team">You need at least 11 players in your Team</p>
                 {% endif %}
             {% endblock content %}
             <img class="soccer_field" alt="soccer_field" src="static/media/cancha.jpg" width="100%">

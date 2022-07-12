@@ -39,16 +39,22 @@
             <br>
         </p>
     </div>
-    <form class="form_container" method="post" action="/update" enctype="multipart/form-data">
+    <form class="form_container" method="post" action="/update" enctype="multipart/form-data" novalidate>
         <div hidden class="div_form">
             <input type="hidden" value="{{ player[0] }}" name="txtID" id="txtID">
         </div>
+        {{ form.hidden_tag() }}
         <div class="div_form">
-            <label>Name:</label>
-            <input value="{{ player[1] }}" type="text" name="txtNombre" id="txtNombre">
+            <div class="div_input">
+                {{ form.txtNombre.label }}
+                {{ form.txtNombre }}
+            </div>
+            <br>
+            {% for error in form.txtNombre.errors %}
+            <div class="msj_error">{{ error }}</div>
+            {% endfor %}
         </div>
-        <br>
-        <div class="div_form">
+        <div class="">
             <label>Position:</label>
             <select value="{{ player[2] }}" name="txtPosition" id="txtPosition">
                 <option value="Arquero">Arquero</option>
@@ -58,7 +64,7 @@
             </select>
         </div>
         <br>
-        <div class="div_form">
+        <div class="">
             <label>Number:</label>
             <select role="combobox" name="txtNum" id="txtNum">
                 <script src="{{ url_for('static', filename='desplegable.js')}}"></script>
@@ -67,12 +73,26 @@
         </div>
         <br>
         <div class="div_form">
-            <label>Picture:</label>
-            <input type="file" name="txtFoto" id="txtFoto">
+            <div class="div_input">
+                {{ form.txtFoto.label }}
+                {{ form.txtFoto }}
+            </div>
+            <br>
+            {% for error in form.txtFoto.errors %}
+            <div class="msj_error">{{ error }}</div>
+            {% endfor %}
         </div>
         <br>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="msj_error msj_error_center">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {% block body %}{% endblock %}
         <br>
-        <input type="submit" value="Add Player" class="button_add">
+        {{ form.submit() }}
     </form>  
     {% endfor %}
 {% include 'footer.html' %}

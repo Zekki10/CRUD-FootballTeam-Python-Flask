@@ -213,6 +213,10 @@ tbody tr:nth-child(odd) {
     justify-content: center;
     align-items: center;
 }
+.div_form {
+    display: flex;
+    flex-direction: column;
+}
 .form_container div label {
     width: 20%;
 }
@@ -232,6 +236,24 @@ datalist {
     position: relative;
     margin: 10% auto;
     text-align: center;
+}
+.msj_error {
+    position: relative;
+    max-width: 250px;
+    text-align: center;
+    background-color: rgb(255, 108, 108);
+    font-size: 0.8rem;
+}
+.msj_error_center {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: 0 auto;
+}
+.msj_error_team {
+    position: absolute;
+    font-size: 1.3rem;
+    font-weight: bolder;
 }
 /*Edit*/
 .info_player {
