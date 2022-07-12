@@ -77,17 +77,18 @@ def edit(id):
 
 @app.route('/update', methods=['POST']) 
 def update():
+    id=request.form['txtID'] 
+    _nombre=request.form['txtNombre'] 
+    _position = request.form['txtPosition'] 
+    _num=request.form['txtNum']
+    _foto=request.files['txtFoto']
     form = SignupForm()
     if not form.validate_on_submit():
         txtNombre = form.txtNombre.data
         flash('All fields are required')
         return redirect(url_for('edit', id = id)) 
     
-    id=request.form['txtID'] 
-    _nombre=request.form['txtNombre'] 
-    _position = request.form['txtPosition'] 
-    _num=request.form['txtNum']
-    _foto=request.files['txtFoto']
+    
 
     sql = "UPDATE `crud_codo`.`players` SET `name`=%s, `position`=%s, `number`=%s WHERE id=%s;" 
     datos=(_nombre, _position, _num, id)
@@ -115,7 +116,7 @@ def storage():
     form = SignupForm()
     if not form.validate_on_submit():
         txtNombre = form.txtNombre.data
-        return redirect(url_for('create', form = form))
+        return render_template("players/create.html", form=form)
     # creo variables para almacenar los datos enviados por el form
     _nombre = request.form['txtNombre']
     _position = request.form['txtPosition'] 

@@ -16,11 +16,11 @@
             <br>
             {% for error in form.txtNombre.errors %}
             <div class="msj_error">{{ error }}</div>
+            <br>
             {% endfor %}
             <!-- <label>Name:</label>
             <input type="text" name="txtNombre" id="txtNombre" required> -->
         </div>
-        <br>
         <div class="">
             <label>Position:</label>
             <select name="txtPosition" id="txtPosition" required>
@@ -52,7 +52,7 @@
         </div>
         <br>
         <br>
-        {{ form.submit() }}
+        {{ form.submit(class_='button_add') }}
         <!-- <input type="submit" value="Add Player" class="button_add"> -->
     </form>
     {% else %}

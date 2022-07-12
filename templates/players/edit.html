@@ -47,7 +47,7 @@
         <div class="div_form">
             <div class="div_input">
                 {{ form.txtNombre.label }}
-                {{ form.txtNombre }}
+                {{ form.txtNombre(value=player[1]) }}
             </div>
             <br>
             {% for error in form.txtNombre.errors %}
@@ -75,7 +75,7 @@
         <div class="div_form">
             <div class="div_input">
                 {{ form.txtFoto.label }}
-                {{ form.txtFoto }}
+                {{ form.txtFoto(value=player[4]) }}
             </div>
             <br>
             {% for error in form.txtFoto.errors %}
@@ -92,7 +92,7 @@
         {% endwith %}
         {% block body %}{% endblock %}
         <br>
-        {{ form.submit() }}
+        {{ form.submit(class_='button_add', value="Update Player") }}
     </form>  
     {% endfor %}
 {% include 'footer.html' %}
